@@ -1,4 +1,3 @@
-import counterReducer from "@/store/slices/counter-slice"
 import { configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
 import { loadingBarReducer } from "react-redux-loading-bar"
@@ -10,7 +9,6 @@ export const store = configureStore({
     [apiEndpoint.reducerPath]: apiEndpoint.reducer,
     [protectedApiEndpoint.reducerPath]: protectedApiEndpoint.reducer,
     auth: authReducer,
-    counter: counterReducer,
     loadingBar: loadingBarReducer,
   },
   middleware: (getDefaultMiddleware) =>

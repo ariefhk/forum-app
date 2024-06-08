@@ -1,3 +1,9 @@
+import ProtectedLayout from "@/layouts/protected-layout"
+
 export default function HomePage() {
-  return <div>HomePage</div>
+  return (
+    <ProtectedLayout>
+      <div>HomePage</div>
+    </ProtectedLayout>
+  )
 }

@@ -41,35 +41,33 @@ export default function LoginForm() {
   }
 
   return (
-    <>
-      <form className="grid gap-4" onSubmit={onLoginSubmit}>
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            name="email"
-            values={values?.email}
-            onChange={(e) => handleChange(e)}
-            placeholder="m@example.com"
-            required
-          />
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            type="password"
-            name="password"
-            required
-            values={values?.password}
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-      </form>
-    </>
+    <form className="grid gap-4" onSubmit={onLoginSubmit}>
+      <div className="grid gap-2">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          name="email"
+          values={values?.email}
+          onChange={(e) => handleChange(e)}
+          placeholder="m@example.com"
+          required
+        />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          type="password"
+          name="password"
+          required
+          values={values?.password}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <Button type="submit" className="w-full">
+        Login
+      </Button>
+    </form>
   )
 }

@@ -8,7 +8,7 @@ export const AuthType = {
 // Utility function to prepare headers
 const prepareAuthHeaders = (headers) => {
   const token = getLocalStorageData(AuthType.AUTH_LOCALSTORAGE_KEY)
-  console.log("current token: ", token)
+  // console.log("current token: ", token)
   if (token) {
     headers.set("Authorization", `Bearer ${token}`)
   }
@@ -21,6 +21,7 @@ export const apiEndpoint = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env?.VITE_BASE_URL,
   }),
+  tagTypes: ["AUTH"],
   endpoints: () => ({}),
 })
 
@@ -30,7 +31,7 @@ export const protectedApiEndpoint = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env?.VITE_BASE_URL,
     prepareHeaders: prepareAuthHeaders,
-    tagTypes: ["AUTH", "USER"],
+    tagTypes: ["USER"],
   }),
   endpoints: () => ({}),
 })
