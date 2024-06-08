@@ -5,6 +5,7 @@ import useInput from "@/hooks/useInput"
 import { useLoginMutation } from "@/store/api-slices/auth-api-slice"
 import { setToken } from "@/store/slices/auth-slice"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { useToast } from "../ui/use-toast"
 
 const initialState = {
@@ -17,6 +18,7 @@ export default function LoginForm() {
   const [login] = useLoginMutation()
   const { toast } = useToast()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onLoginSubmit = async (e) => {
     e.preventDefault()
@@ -30,6 +32,7 @@ export default function LoginForm() {
         title: "Berhasil Login!",
         description: `Selamat, Anda berhasil login`,
       })
+      navigate("/")
     } catch (error) {
       console.log("ERROR LOGIN: ", error)
       toast({

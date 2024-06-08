@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import useInput from "@/hooks/useInput"
 import { useRegisterMutation } from "@/store/api-slices/auth-api-slice"
+import { useNavigate } from "react-router-dom"
 import { useToast } from "../ui/use-toast"
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
 export default function RegisterForm() {
   const { values, handleChange } = useInput(initialState)
   const [register] = useRegisterMutation()
+  const navigate = useNavigate()
   const { toast } = useToast()
 
   const onRegisterSubmit = async (e) => {
@@ -30,6 +32,7 @@ export default function RegisterForm() {
         title: "Berhasil Register!",
         description: `Selamat, Anda berhasil Register`,
       })
+      navigate("/login")
     } catch (error) {
       console.log("ERROR REGISTER: ", error)
       toast({
