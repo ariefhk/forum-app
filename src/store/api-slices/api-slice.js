@@ -2,7 +2,7 @@ import { getLocalStorageData } from "@/lib/local-storage"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const AuthType = {
-  AUTH_LOCALSTORAGE_KEY: "accessToken",
+  AUTH_LOCALSTORAGE_KEY: "accessToken-forum-app",
 }
 
 // Utility function to prepare headers
