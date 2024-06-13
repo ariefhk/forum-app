@@ -1,3 +1,11 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import ProtectedLayout from "@/layouts/protected-layout"
 import { useGetAllThreadQuery } from "@/store/api-slices/thread-api-slice"
 import {
@@ -26,7 +34,24 @@ export default function HomePage() {
 
   return (
     <ProtectedLayout>
-      <div>HomePage</div>
+      <div className=" flex flex-col gap-5 pr-2 pt-3">
+        {Array.from({ length: 5 }).map((_, idx) => {
+          return (
+            <Card key={idx + 1}>
+              <CardHeader>
+                <CardTitle>Card Title</CardTitle>
+                <CardDescription>Card Description</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Card Content</p>
+              </CardContent>
+              <CardFooter>
+                <p>Card Footer</p>
+              </CardFooter>
+            </Card>
+          )
+        })}
+      </div>
     </ProtectedLayout>
   )
 }
