@@ -1,20 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
 import { loadingBarReducer } from "react-redux-loading-bar"
-import { apiEndpoint, protectedApiEndpoint } from "./api-slices/api-slice"
+import { apiEndpoint } from "./api-slices/api-slice"
 import authReducer from "./slices/auth-slice"
+import threadReducer from "./slices/thread-slice"
+import userReducer from "./slices/user-slice"
 
 export const store = configureStore({
   reducer: {
     [apiEndpoint.reducerPath]: apiEndpoint.reducer,
-    [protectedApiEndpoint.reducerPath]: protectedApiEndpoint.reducer,
     auth: authReducer,
+    thread: threadReducer,
+    user: userReducer,
     loadingBar: loadingBarReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(apiEndpoint.middleware)
-      .concat(protectedApiEndpoint.middleware),
+    getDefaultMiddleware().concat(apiEndpoint.middleware),
 })
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

@@ -1,4 +1,5 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar"
+import { setToken } from "../slices/auth-slice"
 import { apiEndpoint } from "./api-slice"
 
 export const authApiSlice = apiEndpoint.injectEndpoints({
@@ -22,7 +23,8 @@ export const authApiSlice = apiEndpoint.injectEndpoints({
       async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         dispatch(showLoading())
         try {
-          await queryFulfilled
+          const { data: token } = await queryFulfilled
+          dispatch(setToken(token))
         } catch (error) {
           console.log("LOGG ERROR ON QUERYSTARTED LOGIN: ", error)
         }

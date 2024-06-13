@@ -5,33 +5,17 @@ export const AuthType = {
   AUTH_LOCALSTORAGE_KEY: "accessToken-forum-app",
 }
 
-// Utility function to prepare headers
-const prepareAuthHeaders = (headers) => {
-  const token = getLocalStorageData(AuthType.AUTH_LOCALSTORAGE_KEY)
-  // console.log("current token: ", token)
-  if (token) {
-    headers.set("Authorization", `Bearer ${token}`)
-  }
-  return headers
+export const protectedHeaders = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${getLocalStorageData(AuthType.AUTH_LOCALSTORAGE_KEY)}`,
 }
 
-// public endpoint
+// api endpoint
 export const apiEndpoint = createApi({
-  reducerPath: "PUBLIC_ENDPOINT",
+  reducerPath: "API_ENDPOINT",
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env?.VITE_BASE_URL,
   }),
-  tagTypes: ["AUTH"],
-  endpoints: () => ({}),
-})
-
-// protected endpoint with JWT
-export const protectedApiEndpoint = createApi({
-  reducerPath: "PROTECTED_ENDPOINT",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env?.VITE_BASE_URL,
-    prepareHeaders: prepareAuthHeaders,
-    tagTypes: ["USER"],
-  }),
+  tagTypes: ["AUTH", "USER", "THREAD", "LEADERBOARD"],
   endpoints: () => ({}),
 })

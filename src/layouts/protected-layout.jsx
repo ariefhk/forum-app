@@ -12,6 +12,6 @@ export default function ProtectedLayout({ className, children }) {
 }
 
 ProtectedLayout.propTypes = {
-  className: PropTypes.className,
+  className: PropTypes.string,
   children: PropTypes.node,
 }
