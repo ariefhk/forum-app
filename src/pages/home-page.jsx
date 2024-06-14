@@ -34,23 +34,46 @@ export default function HomePage() {
 
   return (
     <ProtectedLayout>
-      <div className=" flex flex-col gap-5 pr-2 pt-3">
-        {Array.from({ length: 5 }).map((_, idx) => {
-          return (
-            <Card key={idx + 1}>
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
-          )
-        })}
+      <div>
+        <div className=" flex flex-col gap-5 pr-2 pt-3">
+          {isLoadinggetThreads &&
+            Array.from({ length: 5 }).map((_, idx) => {
+              return (
+                <Card key={idx + 1}>
+                  <CardHeader>
+                    <CardTitle>Card Title</CardTitle>
+                    <CardDescription>Card Description</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Card Content</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p>Card Footer</p>
+                  </CardFooter>
+                </Card>
+              )
+            })}
+          {isSuccessGetThreads && threads?.length > 0 ? (
+            threads.map((thread, idx) => {
+              return (
+                <Card key={idx + 1}>
+                  <CardHeader>
+                    <CardTitle>{thread?.title}</CardTitle>
+                    <CardDescription>{thread.createdAt}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div dangerouslySetInnerHTML={{ __html: thread?.body }} />
+                  </CardContent>
+                  <CardFooter>
+                    <p>Card Footer</p>
+                  </CardFooter>
+                </Card>
+              )
+            })
+          ) : (
+            <h1>Not Found!</h1>
+          )}
+        </div>
       </div>
     </ProtectedLayout>
   )
